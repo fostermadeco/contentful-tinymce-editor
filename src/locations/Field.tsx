@@ -57,21 +57,17 @@ const Field = () => {
       plugins,
       menubar,
       toolbar,
-      customcolors,
-      custompalette,
-      colormap,
       quickbarsSelectionToolbar,
       resizing,
       customContentStyle,
-    } = sdk.parameters.installation as AppInstallationParameters;
+    } = defaultParameters as AppInstallationParameters;
 
     const renderImage = ({ id, url, width, height, title = "" }: ImageProps) =>
       `<img
-        src="${url}"
+        src="${url}?${resizing}"
         width="${width}"
         height="${height}"
-        style="max-width:300px;height:auto;";
-        alt="{title}"
+        alt="${title}"
         data-contentful-id="${id}"
         data-original-width="${width}"
         data-original-height="${height}"
@@ -187,22 +183,17 @@ const Field = () => {
         .then(({ entity }: any) => getAssetData(entity));
 
     const defaults: any = {
-      height: 1000,
+      height: 600,
       menubar,
       plugins,
-      toolbar: "undo redo | bold italic underline formatgroup | bullist numlist | table assetgroup link | insertgroup | extragroup",
+      toolbar,
       image_caption: true,
-      custom_colors: customcolors,
       toolbar_groups: {},
       quickbars_selection_toolbar: quickbarsSelectionToolbar,
       quickbars_insert_toolbar: false,
       content_style: customContentStyle,
       setup: (editor: any) => setupEditor(editor),
     };
-
-    if (custompalette) {
-      defaults.color_map = colormap;
-    }
 
     if (formatgroup) {
       defaults.toolbar_groups.formatgroup = {
@@ -212,11 +203,13 @@ const Field = () => {
       };
     }
 
+    if (assetgroup) {
       defaults.toolbar_groups.assetgroup = {
         icon: "gallery",
         tooltip: "Contentful Assets",
         items: "existingasset newasset",
       };
+    }
 
     if (insertgroup) {
       defaults.toolbar_groups.insertgroup = {
@@ -233,8 +226,7 @@ const Field = () => {
         items: extragroup,
       };
     }
-    console.log(defaults);
-    
+
     setInit(defaults);
   }, [sdk]);
 
