@@ -5,6 +5,7 @@ import { /* useCMA, */ useSDK } from '@contentful/react-apps-toolkit';
 import { Editor } from '@tinymce/tinymce-react';
 
 // https://github.com/pauloamgomes/contentful-tinymce-editor/blob/master/src/components/Field.tsx
+// https://www.tiny.cloud/docs/tinymce/latest/table/
 const Field = () => {
   const sdk = useSDK<FieldAppSDK>();
   const {tinyMceApiKey} = sdk.parameters.installation;
@@ -53,15 +54,17 @@ const Field = () => {
         initialValue={value}
         init={{
           height: 500,
-          menubar: false,
+          menubar: true,
           plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
             'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+            'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 
+            'table'
           ],
-          toolbar: 'undo redo | blocks | ' +
+          toolbar: 'undo redo | ' +
             'bold italic forecolor | alignleft aligncenter ' +
-            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'alignright | bullist numlist outdent indent | ' +
+            'table tableprops | tabledelete | tablerowheader | tablecellprops tablemergecells tablesplitcells' + 
             'removeformat | help',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
