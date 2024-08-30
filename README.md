@@ -22,7 +22,7 @@ In the project directory, you can run:
 #### `npm start`
 
 Creates or updates your app definition in Contentful, and runs the app in development mode.
-Open your app to view it in the browser.
+You can view it in CF by adding `http://localhost:3000/` in the custom app config for "Frontend".
 
 The page will reload if you make edits.
 You will also see any lint errors in the console.
@@ -36,6 +36,8 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 #### `npm run upload`
+
+When you are ready to upload a new version of the app to CF, run this command. After you run a build.
 
 Uploads the build folder to contentful and creates a bundle that is automatically activated.
 The command guides you through the deployment process and asks for all required arguments.
