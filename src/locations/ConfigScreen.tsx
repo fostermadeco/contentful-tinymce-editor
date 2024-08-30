@@ -96,64 +96,6 @@ const ConfigScreen = () => {
               })
             }}
           />
-          <FormControl.Label>Plugins</FormControl.Label>
-          <TextInput
-            name="plugins"
-            id="plugins"
-            isRequired
-            value={parameters?.plugins}
-            onChange={onInputChange}
-          // textLinkProps={{
-          //   icon: "ExternalLink",
-          //   text: "Plugins",
-          //   onClick: () =>
-          //     window.open("https://www.tiny.cloud/docs/plugins/"),
-          // }}
-          />
-
-          <FormControl.Label>Toolbar</FormControl.Label>
-          <TextInput
-            name="toolbar"
-            id="toolbar"
-            isRequired
-            value={parameters.toolbar}
-            onChange={onInputChange}
-          />
-          <FormControl.HelpText>
-            Use '|' as a toolbar divider. There are 4 toolbar groups: 'formatgroup', 'assetgroup', 'insertgroup' and 'extragroup'.
-          </FormControl.HelpText>
-
-          <FormControl.Label>Quickbars</FormControl.Label>
-          {parameters?.plugins?.includes("quickbars") ? (
-            <TextInput
-              name="quickbarsSelectionToolbar"
-              id="quickbarsSelectionToolbar"
-              value={parameters.quickbarsSelectionToolbar}
-              onChange={onInputChange}
-            />
-          ) : null}
-
-          <FormControl.Label>Format</FormControl.Label>
-          <TextInput
-            name="formatgroup"
-            id="formatgroup"
-            value={parameters.formatgroup}
-            onChange={onInputChange}
-          />
-          <FormControl.HelpText>
-            Referenced using key 'formatgroup' in the toolbar field
-          </FormControl.HelpText>
-
-          <FormControl.Label>Assets</FormControl.Label>
-          <TextInput
-            name="assetgroup"
-            id="assetgroup"
-            value={parameters.assetgroup}
-            onChange={onInputChange}
-          />
-          <FormControl.HelpText>
-            Handles Contentful assets using `existingasset` for inserting an existing Asset or `newasset` for creating a new Asset. Referenced using key 'assetgroup' in the toolbar field.
-          </FormControl.HelpText>
         </FormControl>
       </Form>
     </Flex>
