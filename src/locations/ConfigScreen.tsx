@@ -1,24 +1,16 @@
-import React, { useCallback, useState, useEffect, ChangeEvent } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { ConfigAppSDK } from '@contentful/app-sdk';
 import { Heading, Form, Paragraph, Flex, FormControl, TextInput } from '@contentful/f36-components';
 import { css } from 'emotion';
 import { /* useCMA, */ useSDK } from '@contentful/react-apps-toolkit';
-import {
-  defaultParameters,
-  AppInstallationParameters,
-} from "./ConfigDefaults";
 
-
-
-type ParameterKeys = keyof AppInstallationParameters;
-
+export interface AppInstallationParameters {
+  tinyMceApiKey:string;
+}
 
 const ConfigScreen = () => {
+  const [parameters, setParameters] = useState<AppInstallationParameters>({tinyMceApiKey: ''});
   const sdk = useSDK<ConfigAppSDK>();
-  const [parameters, setParameters] = useState<AppInstallationParameters>({
-    ...defaultParameters,
-    ...sdk.parameters.installation
-  });
   /*
      To use the cma, inject it as follows.
      If it is not needed, you can remove the next line.
@@ -66,39 +58,30 @@ const ConfigScreen = () => {
     })();
   }, [sdk]);
 
-  const onInputChange = (event: ChangeEvent): void => {
-    const target = event.target as HTMLInputElement;
-    const { name, value } = target;
-    const newParams: any = { ...parameters };
-    newParams[name as ParameterKeys] = value;
-
-    setParameters(newParams);
-  };
-
   return (
     <Flex flexDirection="column" className={css({ margin: '80px', maxWidth: '800px' })}>
-      <Form>
-        <Heading>App Config</Heading>
-        <Paragraph>Config for TinyMCE field App.</Paragraph>
-        <FormControl>
-          <FormControl.Label>TinyMCE API Key</FormControl.Label>
-          <TextInput
-            id="tinyMceApiKey"
-            type="text"
-            name="tinyMceApiKey"
-            placeholder=""
-            value={parameters?.tinyMceApiKey}
-            width={100}
-            onChange={(e) => {
-              setParameters({
-                ...parameters,
-                tinyMceApiKey: e.target.value,
-              })
-            }}
-          />
-        </FormControl>
-      </Form>
-    </Flex>
+    <Form>
+      <Heading>App Config</Heading>
+      <Paragraph>Config for TinyMCE field App.</Paragraph>
+      <FormControl>
+        <FormControl.Label>TinyMCE API Key</FormControl.Label>
+        <TextInput
+          id="tinyMceApiKey"
+          type="text"
+          name="tinyMceApiKey"
+          placeholder=""
+          value={parameters?.tinyMceApiKey}
+          width={100}
+          onChange={(e) => {
+            setParameters({
+              ...parameters,
+              tinyMceApiKey: e.target.value,
+            })
+          }}
+        />
+      </FormControl>
+    </Form>
+  </Flex>
   );
 };
 
