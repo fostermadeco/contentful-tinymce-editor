@@ -39,11 +39,11 @@ export interface AppInstallationParameters {
 export const defaultParameters: AppInstallationParameters = {
     tinyMceApiKey: "",
     plugins:
-        "preview advlist autolink lists link image charmap anchor searchreplace visualblocks visualchars code fullscreen insertdatetime media table paste wordcount autoresize hr nonbreaking paste quickbars emoticons",
+        "preview advlist autolink lists link image charmap anchor searchreplace visualblocks visualchars code codesample fullscreen insertdatetime media table paste wordcount autoresize hr nonbreaking paste quickbars emoticons",
     toolbar:
-        "undo redo | styleselect | bold italic underline formatgroup | bullist numlist | table assetgroup link | insertgroup | extragroup",
+        "undo redo | styleselect | bold italic underline formatgroup codesample | bullist numlist | table assetgroup link | insertgroup | extragroup",
     formatgroup:
-        "strikethrough superscript subscript | alignleft aligncenter alignright | indent outdent | forecolor backcolor | removeformat",
+        "strikethrough superscript subscript | code-sample | alignleft aligncenter alignright | indent outdent | forecolor backcolor | removeformat",
     // insertgroup:
     //     "media emoticons charmap emoji hr anchor insertdatetime nonbreaking",
     assetgroup: "existingasset newasset",
@@ -52,7 +52,7 @@ export const defaultParameters: AppInstallationParameters = {
     extragroup:
         "paste pastetext | searchreplace | code",
     quickbarsSelectionToolbar:
-        "bold italic underline | formatselect | quicklink blockquote",
+        "bold italic underline codesample | formatselect | quicklink",
     menubar: false,
     resizing: "w=1024&q=80",
     customContentStyle:
